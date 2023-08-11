@@ -1,0 +1,1 @@
+D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid-serial.exe

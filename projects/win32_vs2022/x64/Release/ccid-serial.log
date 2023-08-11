@@ -1,0 +1,15 @@
+﻿  ccid_convert.c
+  ccid_exchange.c
+  ccid_helpers.c
+  ccid_serial_receiver.c
+  ccid_serial_sender.c
+  win32_hal.c
+  pcsc-serial-sample.c
+  pcsc-serial-sample-main.c
+  scard_core.c
+  scard_helpers.c
+  Génération de code en cours
+  Previous IPDB not found, fall back to full compilation.
+  All 75 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Fin de la génération du code
+  ccid-serial.vcxproj -> D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid-serial.exe

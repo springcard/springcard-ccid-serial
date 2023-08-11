@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"scard_errors.h": "c",
+		"ccid_typedefs.h": "c"
+	}
+}

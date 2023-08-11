@@ -1,0 +1,10 @@
+D:\dev\github\springcard-ccid-serial\src\ccid\ccid_convert.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid_convert.obj
+D:\dev\github\springcard-ccid-serial\src\ccid\ccid_exchange.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid_exchange.obj
+D:\dev\github\springcard-ccid-serial\src\ccid\ccid_helpers.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid_helpers.obj
+D:\dev\github\springcard-ccid-serial\src\ccid\ccid_serial_receiver.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid_serial_receiver.obj
+D:\dev\github\springcard-ccid-serial\src\ccid\ccid_serial_sender.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\ccid_serial_sender.obj
+D:\dev\github\springcard-ccid-serial\src\hal\win32\win32_hal.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\win32_hal.obj
+D:\dev\github\springcard-ccid-serial\src\sample\pcsc-serial-sample.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\pcsc-serial-sample.obj
+D:\dev\github\springcard-ccid-serial\src\sample\pc\pcsc-serial-sample-main.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\pcsc-serial-sample-main.obj
+D:\dev\github\springcard-ccid-serial\src\scard\scard_core.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\scard_core.obj
+D:\dev\github\springcard-ccid-serial\src\scard\scard_helpers.c;D:\dev\github\springcard-ccid-serial\projects\win32_vs2022\x64\Release\scard_helpers.obj
