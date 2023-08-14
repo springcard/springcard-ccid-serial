@@ -144,7 +144,7 @@ void CCID_LIB(ClearWakeup)(void)
 
 /**
  * @brief Wait until a message is available or a timeout occurs
- * @note This function must be implemented specifically for the OS/target
+ * @note This function must be implemented specifically for the OS/target.
  */
 BOOL CCID_LIB(WaitWakeup)(DWORD timeout_ms)
 {

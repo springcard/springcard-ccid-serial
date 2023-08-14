@@ -198,8 +198,6 @@ BOOL CCID_LIB(SerialSendByte)(BYTE bValue)
 		return FALSE;
 	}
 
-	D(printf("-%02X", bValue));
-
 	return TRUE;
 }
 
@@ -217,8 +215,6 @@ BOOL CCID_LIB(SerialSendBytes)(const BYTE* abValue, DWORD dwLength)
 		return FALSE;
 	}
 
-	D(for (DWORD i = 0; i < dwLength; i++) printf("-%02X", abValue[i]));
-
 	return TRUE;
 }
 
@@ -228,7 +224,6 @@ BOOL CCID_LIB(SerialSendBytes)(const BYTE* abValue, DWORD dwLength)
  */
 void CCID_LIB(WakeupFromISR)(void)
 {
-	D(printf(" [WAKEUP]\n"));
 	SetEvent(hEvent);
 }
 
@@ -238,7 +233,6 @@ void CCID_LIB(WakeupFromISR)(void)
  */
 void CCID_LIB(ClearWakeup)(void)
 {
-	D(printf("[CLEAR]\n"));
 	ResetEvent(hEvent);
 }
 
@@ -253,7 +247,6 @@ BOOL CCID_LIB(WaitWakeup)(DWORD timeout_ms)
 	rc = WaitForSingleObject(hEvent, timeout_ms);
 	if (rc == WAIT_OBJECT_0)
 	{
-		D(printf("[READY]\n"));
 		return TRUE;
 	}
 
@@ -261,7 +254,7 @@ BOOL CCID_LIB(WaitWakeup)(DWORD timeout_ms)
 }
 
 /**
- * @brief Receive bytes coming from the CCID device; call CCID_RecvByteISR every time a byte arrives
+ * @brief Receive bytes coming from the CCID device; call CCID_RecvByteFromISR every time a byte arrives
  * @note This function must be implemented specifically for the OS/target. It is namely the UART's RX ISR.
  */
 static DWORD WINAPI ccid_serial_recv_task(void* unused)
@@ -282,7 +275,6 @@ static DWORD WINAPI ccid_serial_recv_task(void* unused)
 
 		if (dwRead)
 		{
-			D(printf("+%02X", bValue));
 			CCID_LIB(SerialRecvByteFromISR)(bValue);
 		}
 	}

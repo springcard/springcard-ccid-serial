@@ -29,44 +29,47 @@ K531 and K632 are not supported.
 
 ## API Reference
 
-The .html files within the /docs folder are your primary source of information.
+The `.html` files within the `/docs` folder are your primary source of information.
 
 ## Sample
 
-The /src/sample/pcsc-serial-sample.c has all you need.
+The `/src/sample/pcsc-serial-sample.c` has all you need.
 
 ## Porting the library to your MCU
 
-Use the /src/hal/skel/hal_skel.c file as reference.
+Use the `/src/hal/skel/hal_skel.c` file as reference.
 
-Your hardware-abstraction layer (HAL) must provide 
+Your hardware-abstraction layer (HAL) must provide the following features:
 
-### Serial communication with the K663.
+### Serial communication with the module.
 
-The serial_init function shall configure the UART (38400bps, 8 data bits, 1 stop bit, no parity, no flow control).
+The `CCID_SerialOpen` function shall configure the UART (38400bps, 8 data bits, 1 stop bit, no parity, no flow control).
 
-The serial_send_byte and serial_send_bytes are used to transmit (TX) from the MCU to the K663.
+The `CCID_SerialSendByte` and `CCID_SerialSendBytes` are used to transmit (TX) from the MCU to the module.
 
-Receiving (RX) must be done in an ISR. The ISR shall call serial_recv_callback for every byte that comes from the K663 to the MCU.
-  
+Receiving (RX) must be done in an ISR. The ISR shall call `CCID_SerialRecvByteFromISR` for every byte that comes from the module to the MCU.
+
 ### Wait for the end of the communication.
 
-ccid_recv_wait will be called in the context of the main task, and shall block until the ISR calls ccid_recv_wakeupFromISR (this is done by serial_recv_callback).
+`CCID_WaitWakeup` will be called in the context of the main task, and shall block until `CCID_SerialRecvByteFromISR` has called `CCID_WakeupFromISR`.
 
-If you don't have an OS, just use a volatile BOOL to do so.
+You must implement `CCID_WaitWakeup` and `CCID_WakeupFromISR` to provide this behaviour.
 
-Under a multitasking system, you must use a 'Event' or 'Semaphore' object to implement this correctly.
+If you don't have an OS, a simple flag (`volatile BOOL`) does the job easily.
 
-Under FreeRTOS (http://www.freertos.org) you will typically use a Binary Semaphore as follow:
-- ccid_recv_wait blocks using xSemaphoreTake
-- ccid_recv_wakeupFromISR calls xSemaphoreGiveFromISR
-- you may create the semaphore in the platform_init function.
+Under a multi-task/multi-thread kernel, you must use a 'Event' or 'Semaphore' object to implement this correctly.
 
-### Provide a mean to wait for a specified time, from 1 to 10000ms. This is the role of sleep_ms.
+Under FreeRTOS (http://www.freertos.org) you could typically use a Binary Semaphore as follow:
+- `CCID_WaitWakeup` blocks using `xSemaphoreTake`
+- `CCID_WakeupFromISR` calls `xSemaphoreGiveFromISR` to unblock.
+
+### Manage delays
+
+The libraries expects to have a function named `sleep_ms` to wait for the specified number of milliseconds.
 
 ## License
 
-This library is Copyright (c) 2015 SPRINGCARD SAS, FRANCE - http://www.springcard.com
+This library is Copyright (c) 2015-2023 SPRINGCARD SAS, FRANCE - http://www.springcard.com
 
 Permission is given to embed it in your own MCU (or even PC-based) projects, provided that this project is always used in conjunction with a genuine SpringCard product.
 

@@ -73,7 +73,15 @@ LONG SCARD_LIB(GetStatusChangeEx)(DWORD dwTimeoutMs, DWORD* pdwPresentSlots, DWO
 /* -------------------------------------------- */
 
 void SCARD_LIB(Init)(void);
-LONG SCARD_LIB(IsValid)(void);
+void SCARD_LIB(Cancel)(void);
+BOOL SCARD_LIB(IsValidContext)(void);
+
+/* Function to be provided by the caller */
+/* ------------------------------------- */
+BOOL SCARD_LIB(IsCancelledHook)(void);
+
+/* Function made available to the lower-level driver (CCID) */
+/* -------------------------------------------------------- */
 BOOL SCARD_LIB(IsFatalError)(LONG rc);
 
 /* Error codes */

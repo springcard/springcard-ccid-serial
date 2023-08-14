@@ -63,7 +63,6 @@
 #include "../ccid/ccid.h"
 #include "../ccid/ccid_hal.h"
 
-void scard_clear_error(void);
 void scard_raise_error(const char* msg);
 
 #endif

@@ -52,16 +52,7 @@
 
 #include "ccid_i.h"
 
-static BOOL ccid_error = FALSE;
-
-/**
- * @internal
- * @brief Clear the error status
- */
-void ccid_clear_error(void)
-{
-	ccid_error = FALSE;
-}
+static BOOL ccid_valid;
 
 /**
  * @internal
@@ -69,23 +60,21 @@ void ccid_clear_error(void)
  */
 void ccid_raise_error(const char* msg)
 {
-	D(printf("\n"));
-	printf("Error in CCID driver: %s\n", msg);
-	ccid_error = TRUE;
+	printf("\nError in CCID driver: %s\n", msg);
+	ccid_valid = FALSE;
 }
 
 /**
  * @brief Return TRUE if the CCID driver is up and running (serial port OK, no error)
  */
-BOOL CCID_LIB(IsValid)(void)
+BOOL CCID_LIB(IsValidDriver)(void)
 {
-	if (!CCID_LIB(SerialIsOpen)())
-		return FALSE;
-	
-	if (ccid_error)
-		return FALSE;		
-
-	return TRUE;
+	if (ccid_valid)
+	{
+		if (!CCID_LIB(SerialIsOpen)())
+			ccid_valid = FALSE;
+	}
+	return ccid_valid;
 }
 
 /**
@@ -93,7 +82,8 @@ BOOL CCID_LIB(IsValid)(void)
  */
 void CCID_LIB(Init)(void)
 {
-	ccid_error = FALSE;
+	ccid_reset_receiver();
+	ccid_valid = TRUE;
 }
 
 /**
@@ -103,8 +93,6 @@ LONG CCID_LIB(Ping)(void)
 {
 	CCID_PACKET_ST packet;
 	LONG rc;
-
-	ccid_clear_error();
 
 	CCID_LIB(PacketInit)(&packet);
 
@@ -123,8 +111,6 @@ LONG CCID_LIB(Start)(BOOL fUseNotifications)
 {
 	CCID_PACKET_ST packet;
 	LONG rc;
-
-	ccid_clear_error();
 
 	CCID_LIB(PacketInit)(&packet);
 
@@ -160,8 +146,6 @@ LONG CCID_LIB(Stop)(void)
 {
 	CCID_PACKET_ST packet;
 	LONG rc;
-
-	ccid_clear_error();
 
 	CCID_LIB(PacketInit)(&packet);
 

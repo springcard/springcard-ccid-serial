@@ -95,6 +95,5 @@ LONG CCID_LIB(SerialSend)(CCID_PACKET_ST* packet)
 	if (!CCID_LIB(SerialSendByte)(bChecksum))
 		return SCARD_ERR(F_COMM_ERROR);
 
-	D(printf("\n"));
 	return SCARD_ERR(S_SUCCESS);
 }

@@ -26,7 +26,7 @@
     <ClCompile Include="..\..\src\ccid\ccid_serial_sender.c" />
     <ClCompile Include="..\..\src\hal\win32\win32_hal.c" />
     <ClCompile Include="..\..\src\sample\pcsc-serial-sample.c" />
-    <ClCompile Include="..\..\src\sample\pc\pcsc-serial-sample-main.c" />
+    <ClCompile Include="..\..\src\sample\pc\pcsc-serial-sample-main-pc.c" />
     <ClCompile Include="..\..\src\scard\scard_core.c" />
     <ClCompile Include="..\..\src\scard\scard_helpers.c" />
   </ItemGroup>

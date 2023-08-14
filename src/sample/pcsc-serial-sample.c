@@ -64,6 +64,7 @@ BOOL fCcidUseNotifications = FALSE;
 BOOL fTestEchoControl = FALSE;
 BOOL fTestEchoTransmit = FALSE;
 BOOL fVerbose = FALSE;
+BOOL fSampleMustExit = FALSE;
 
 static BYTE abInOutBuffer[4 + 1 + 255 + 1]; /* Max size of a short APDU */
 
@@ -91,44 +92,46 @@ void sample(void)
 	BYTE slotCount;
 	BOOL cardPresent[CCID_MAX_SLOT_COUNT] = { 0 };
 
+	printf("Running sample application with the found CCID device...\n");
+
 	/* Verify we can ping the device */
 	if (!ping_device())
-		return;
+		goto done;
 
 	/* Retrieve and print the device descriptor */
 	dump_device_descriptor();
-	if (!SCARD_LIB(IsValid)())
-		return;
+	if (!SCARD_LIB(IsValidContext)())
+		goto done;
 
 	/* Retrieve and print the configuration descriptor */
 	dump_configuration_descriptor();
-	if (!SCARD_LIB(IsValid)())
-		return;
+	if (!SCARD_LIB(IsValidContext)())
+		goto done;
 
 	/* Retrieve and print all the string descriptors */
 	dump_string_descriptors();
-	if (!SCARD_LIB(IsValid)())
-		return;
+	if (!SCARD_LIB(IsValidContext)())
+		goto done;
 
 	/* Retrieve and print the interface descriptor */
 	dump_interface_descriptor();
-	if (!SCARD_LIB(IsValid)())
-		return;
+	if (!SCARD_LIB(IsValidContext)())
+		goto done;
 	
 	/* Activate the configuration */
 	printf("Starting PC/SC...\n");
 	if (!start_pcsc())
-		return;
+		goto done;
 
 	/* Verify we still can ping the device */
 	if (!ping_device())
-		return;
+		goto done;
 	
 	/* Get the slot count */
 	printf("Reading slot count\n");
 	slotCount = get_slot_count();
 	if (slotCount == 0)
-		return;
+		goto done;
 	
 	printf("Device has %d slot(s)\n", slotCount);
 	if (slotCount > CCID_MAX_SLOT_COUNT)
@@ -137,20 +140,20 @@ void sample(void)
 		slotCount = CCID_MAX_SLOT_COUNT;		
 	}
 
-	if (fTestEchoControl)
+	if (fTestEchoControl && SCARD_LIB(IsValidContext)())
 	{
 		printf("Please wait during the test procedure (echo over SCardControl)...\n");
 		if (!test_echo_control())
 		{
 			printf("Test failed!\n");
-			return;
+			goto done;
 		}
 	}
 
 	printf("Insert a card in any slot...\n");
 
 	/* Run while the device is up and running */
-	while (SCARD_LIB(IsValid)())
+	while (SCARD_LIB(IsValidContext)())
 	{
 		BYTE slot;
 
@@ -158,13 +161,15 @@ void sample(void)
 		{
 			/* Wait until a notification arrives */
 			printf("Waiting for a change");
+
+			/* Wait forever */
 			wait_status_change((DWORD)-1); /* Use -1 for INFINITE timeout */
-			if (!SCARD_LIB(IsValid)())
-				return;
+			if (!SCARD_LIB(IsValidContext)())
+				goto done;
 
 			/* Verify we still can ping the device */
 			if (!ping_device())
-				return;			
+				goto done;
 		}
 
 		/* Find the slot(s) were a card has been inserted */
@@ -173,6 +178,8 @@ void sample(void)
 			/* Ignore slots we can't support */
 			if (slot >= CCID_MAX_SLOT_COUNT)
 				continue;
+			if (!SCARD_LIB(IsValidContext)())
+				goto done;
 
 			if (card_is_present(slot))
 			{
@@ -196,13 +203,16 @@ void sample(void)
 					cardPresent[slot] = FALSE;
 					printf("Card removed from slot %d\n", slot);
 				}				
-			}
+			}			
 		}
 	}
 
 	/* In case we can exit... */
 	printf("Stopping PC/SC...\n");
 	stop_pcsc();
+
+done:
+	printf("Sample application terminated\n");
 }
 
 static void sample_on_slot(BYTE slot)
@@ -252,7 +262,7 @@ static void sample_on_slot(BYTE slot)
 		}
 	}
 
-	if (fTestEchoTransmit)
+	if (fTestEchoTransmit && SCARD_LIB(IsValidContext)())
 	{
 		printf("Please wait during the test (echo over SCardTransmit)...\n");
 		if (!test_echo_transmit(slot))
@@ -670,19 +680,35 @@ static BOOL test_echo_control_ex(unsigned delay, unsigned Lc, unsigned Le)
 
 static BOOL test_echo_control(void)
 {
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;
 	if (!test_echo_control_ex(0, 0, 0))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;
 	if (!test_echo_control_ex(1, 0, 0))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;		
 	if (!test_echo_control_ex(10, 0, 0))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;	
 	if (!test_echo_control_ex(0, 0, 256))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;	
 	if (!test_echo_control_ex(0, 255, 255))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;	
 	if (!test_echo_control_ex(30, 0, 0))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;	
 	if (!test_echo_control_ex(60, 0, 0))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;	
 
 	return TRUE;
@@ -786,36 +812,56 @@ static BOOL test_echo_transmit(BYTE slot)
 	/* Test the limits first - It is better to fail quickly if something is wrong */
 	if (!test_echo_transmit_ex(slot, 0, 0, 0))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;	
 	if (!test_echo_transmit_ex(slot, 1, 0, 0))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;	
 	if (!test_echo_transmit_ex(slot, 10, 0, 0))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;	
 	if (!test_echo_transmit_ex(slot, 0, 0, 256))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;	
 	if (!test_echo_transmit_ex(slot, 0, 255, 255))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;	
 	if (!test_echo_transmit_ex(slot, 30, 0, 0))
 		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
+		return FALSE;
 	if (!test_echo_transmit_ex(slot, 60, 0, 0))
+		return FALSE;
+	if (!SCARD_LIB(IsValidContext)())
 		return FALSE;	
-	
+
 	/* Now test every send length */
 	for (int Lc = 1; Lc <= 255; Lc++)
 	{
 		if (!test_echo_transmit_ex(slot, 0, Lc, 0))
 			return FALSE;
+		if (!SCARD_LIB(IsValidContext)())
+			return FALSE;		
 	}
 	/* The every recv length */
 	for (int Le = 1; Le <= 256; Le++)
 	{
 		if (!test_echo_transmit_ex(slot, 0, 0, Le))
 			return FALSE;
+		if (!SCARD_LIB(IsValidContext)())
+			return FALSE;		
 	}
 	/* And test actual echo (recv length = send length) */
 	for (int Lc = 1; Lc <= 255; Lc++)
 	{
 		if (!test_echo_transmit_ex(slot, 0, Lc, Lc))
 			return FALSE;
+		if (!SCARD_LIB(IsValidContext)())
+			return FALSE;		
 	}
 
 	return TRUE;

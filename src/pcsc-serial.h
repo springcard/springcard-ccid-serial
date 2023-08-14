@@ -121,7 +121,7 @@ extern BOOL fTestEchoTransmit;
  */
 extern BOOL fVerbose;
 
- /* Debug messages */
+/* Debug messages */
 /* -------------- */
 
 /* To control debug messages */

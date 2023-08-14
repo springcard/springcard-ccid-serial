@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\sample\pc\pcsc-serial-sample-main.c">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\ccid\ccid_convert.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -43,6 +40,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\hal\win32\win32_hal.c">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sample\pc\pcsc-serial-sample-main-pc.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

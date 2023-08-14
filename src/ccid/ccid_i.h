@@ -62,8 +62,8 @@
 #include "ccid_hal.h"
 #include "../scard/scard.h"
 
-void ccid_clear_error(void);
 void ccid_raise_error(const char* msg);
+void ccid_reset_receiver(void);
 
 void htoul(BYTE abBuffer[], DWORD dwValue);
 void htous(BYTE abBuffer[], WORD wValue);

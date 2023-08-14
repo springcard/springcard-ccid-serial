@@ -224,7 +224,7 @@ again:
 	rc = CCID_LIB(SerialRecv)(packet, timeout_ms);
 	if (rc != SCARD_ERR(S_SUCCESS))
 	{		
-		ccid_raise_error("Failed to recv packet from device");
+		ccid_raise_error("Failed to receive packet from device");
 		return rc;
 	}
 
@@ -309,7 +309,7 @@ LONG CCID_LIB(WaitInterrupt)(CCID_PACKET_ST* packet, DWORD timeout_ms)
 	rc = CCID_LIB(SerialRecv)(packet, timeout_ms);
 	if (rc != SCARD_ERR(S_SUCCESS))
 	{
-		ccid_raise_error("Failed to recv Interrupt packet from device");
+		ccid_raise_error("Failed to receive Interrupt packet from device");
 		return rc;
 	}
 

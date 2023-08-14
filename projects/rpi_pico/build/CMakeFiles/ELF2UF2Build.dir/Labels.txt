@@ -1,0 +1,13 @@
+# Target labels
+ ELF2UF2Build
+# Source files and their labels
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/CMakeFiles/ELF2UF2Build
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/CMakeFiles/ELF2UF2Build.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/CMakeFiles/ELF2UF2Build-complete.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule

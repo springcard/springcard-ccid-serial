@@ -54,16 +54,7 @@
 
 #include "scard_i.h"
 
-static BOOL scard_error;
-
-/**
- * @internal
- * @brief Clear the error status
- */
-void scard_clear_error(void)
-{
-	scard_error = FALSE;
-}
+static BOOL scard_valid;
 
 /**
  * @internal
@@ -71,9 +62,8 @@ void scard_clear_error(void)
  */
 void scard_raise_error(const char* msg)
 {
-	D(printf("\n"));
-	printf("Error in PC/SC-Like stack: %s\n", msg);
-	scard_error = TRUE;
+	printf("\nError in PC/SC-Like stack: %s\n", msg);
+	scard_valid = FALSE;
 }
 
 /**
@@ -81,7 +71,7 @@ void scard_raise_error(const char* msg)
  */
 void SCARD_LIB(Init)(void)
 {
-	scard_error = FALSE;
+	scard_valid = TRUE;
 }
 
 /**
@@ -92,28 +82,28 @@ void SCARD_LIB(Init)(void)
  * - an error has been encountered by the library
  * @return BOOL 
  */
-LONG SCARD_LIB(IsValid)(void)
+BOOL SCARD_LIB(IsValidContext)(void)
 {
-	if (scard_error)
+	if (scard_valid)
 	{
-		D(printf("PC/SC-Like context not valid, a fatal error has been found\n"));
-		return FALSE;		
+		/* Hook to be able to change the status (not used on all targets) */
+		if (SCARD_LIB(IsCancelledHook)())
+		{
+			printf("PC/SC-Like context not valid, operation has been cancelled by the user\n");
+			scard_valid = FALSE;
+		}
+		if (!CCID_LIB(IsValidDriver)())
+		{
+			printf("PC/SC-Like context not valid, the CCID driver has reported an error\n");
+			scard_valid = FALSE;
+		}		
+		if (!CCID_LIB(SerialIsOpen)())
+		{
+			printf("PC/SC-Like context not valid, CCID serial port is not open\n");
+			scard_valid = FALSE;
+		}
 	}
-
-	if (!CCID_LIB(SerialIsOpen)())
-	{
-		D(printf("PC/SC-Like context not valid, CCID serial port is not open\n"));
-		return FALSE;
-	}
-
-	if (!CCID_LIB(IsValid)())
-	{
-		D(printf("PC/SC-Like context not valid, a fatal error has been found in the CCID driver\n"));
-		return FALSE;		
-	}
-	
-	/* Everything is OK */
-	return TRUE;
+	return scard_valid;
 }
 
 /**

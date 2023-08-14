@@ -79,7 +79,16 @@ static volatile BYTE ccid_receiver_push_index;
 static volatile BYTE ccid_receiver_pop_index;
 static CCID_RECEIVER_ST ccid_receivers[2];
 
-static void dump_receiver(CCID_RECEIVER_ST *receiver)
+void ccid_reset_receiver(void)
+{
+	ccid_receiver_error = FALSE;
+	ccid_receiver_push_index = 0;
+	ccid_receiver_pop_index = 0;
+	memset(ccid_receivers, 0, sizeof(ccid_receivers));
+}
+
+#if 0
+static void dump_receiver(CCID_RECEIVER_ST* receiver)
 {
 	printf("\tbStatus: %d\n", receiver->bStatus);
 	printf("\tbEndpoint: %02X\n", receiver->bEndpoint);
@@ -101,6 +110,7 @@ static void dump(void)
 	printf("Receiver 1:\n");
 	dump_receiver(&ccid_receivers[1]);
 }
+#endif
 
 /**
  * @brief Callback invoked by the UART interrupt when a byte has been received
@@ -204,8 +214,6 @@ void CCID_LIB(SerialRecvByteFromISR)(BYTE bValue)
 
 		case STATUS_READY:
 			ccid_receiver_error = TRUE;			
-			dump();
-			printf("ERROR OVERRUN  !!! %02X %d\n", bValue, receiver->bStatus);			
 			receiver->bStatus = STATUS_ERROR_OVERRUN;
 			CCID_LIB(WakeupFromISR)();
 		break;
@@ -237,7 +245,12 @@ LONG CCID_LIB(SerialRecv)(CCID_PACKET_ST* packet, DWORD timeout_ms)
 	{
 		/* Wait until a message arrives */
 		if (!CCID_LIB(WaitWakeup)(timeout_ms))
-			rc = SCARD_ERR(E_TIMEOUT);
+		{
+			if (!SCARD_LIB(IsValidContext)())
+				rc = SCARD_ERR(E_SERVICE_STOPPED); /* Stopped */
+			else
+				rc = SCARD_ERR(E_TIMEOUT); /* Timeout */
+		}
 	}
 
 	if (rc == SCARD_ERR(S_SUCCESS))
@@ -274,10 +287,7 @@ LONG CCID_LIB(SerialRecv)(CCID_PACKET_ST* packet, DWORD timeout_ms)
 			rc = SCARD_ERR(F_UNKNOWN_ERROR);
 
 		/* Cleanup */
-		memset(ccid_receivers, 0, sizeof(ccid_receivers));
-		ccid_receiver_push_index = 0;
-		ccid_receiver_pop_index = 0;
-		ccid_receiver_error = FALSE;
+		ccid_reset_receiver();
 	}
 
 	if (rc == SCARD_ERR(S_SUCCESS))
@@ -304,16 +314,11 @@ LONG CCID_LIB(SerialRecv)(CCID_PACKET_ST* packet, DWORD timeout_ms)
 			}
 		}
 	}
-	else
-	{
-		dump();
-	}
 
 	/* This receiver is ready to receive again */
 	receiver->bStatus = STATUS_IDLE;
 	/* And next time we'll read the other */
 	ccid_receiver_pop_index = 1 - ccid_receiver_pop_index;
 
-	D(printf("\n"));
 	return rc;
 }

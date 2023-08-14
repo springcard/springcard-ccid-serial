@@ -182,7 +182,6 @@ BOOL CCID_LIB(SerialSendByte)(BYTE bValue)
 		return FALSE;
 	}
 
-	D(printf("-%02X", bValue));
 	return TRUE;
 }
 
@@ -210,8 +209,6 @@ BOOL CCID_LIB(SerialSendBytes)(const BYTE* abValue, DWORD dwLength)
 		offset += done;
 	}
 
-	D(for (DWORD i = 0; i < dwLength; i++) printf("-%02X", abValue[i]));
-
 	return TRUE;
 }
 
@@ -222,7 +219,6 @@ BOOL CCID_LIB(SerialSendBytes)(const BYTE* abValue, DWORD dwLength)
 void CCID_LIB(WakeupFromISR)(void)
 {
 	pthread_mutex_lock(&ccid_wakeup_mutex);
-	D(printf(" [WAKEUP]\n"));
 	ccid_wakeup_flag = TRUE;
 	pthread_cond_signal(&ccid_wakeup_cond);
 	pthread_mutex_unlock(&ccid_wakeup_mutex);
@@ -235,7 +231,6 @@ void CCID_LIB(WakeupFromISR)(void)
 void CCID_LIB(ClearWakeup)(void)
 {
 	pthread_mutex_lock(&ccid_wakeup_mutex);
-	D(printf("[CLEAR]\n"));
 	ccid_wakeup_flag = FALSE;
 	pthread_mutex_unlock(&ccid_wakeup_mutex);
 }
@@ -259,7 +254,6 @@ BOOL CCID_LIB(WaitWakeup)(DWORD timeout_ms)
 		rc = pthread_cond_timedwait(&ccid_wakeup_cond, &ccid_wakeup_mutex, &ts);
 		if (rc == ETIMEDOUT)
 		{
-			D(printf("[TIMEOUT]\n"));
 			pthread_mutex_unlock(&ccid_wakeup_mutex);
 			return FALSE;
 		}
@@ -269,7 +263,6 @@ BOOL CCID_LIB(WaitWakeup)(DWORD timeout_ms)
 			return FALSE;
 		}
 	}
-	D(printf("[READY]\n"));
 	pthread_mutex_unlock(&ccid_wakeup_mutex);
 	return TRUE;
 }
@@ -287,7 +280,6 @@ static void* ccid_serial_recv_task(void* arg)
 		BYTE bValue;
         if (read(fd, &bValue, 1) > 0)
 		{
-			D(printf("+%02X", bValue));
 			CCID_LIB(SerialRecvByteFromISR)(bValue);
         }
     }

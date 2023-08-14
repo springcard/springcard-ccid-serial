@@ -1,0 +1,3 @@
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/pioasm/CMakeFiles/rebuild_cache.dir
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/pioasm/CMakeFiles/edit_cache.dir
+/mnt/d/dev/github/springcard-ccid-serial/projects/rpi_pico/build/pioasm/CMakeFiles/pioasm.dir

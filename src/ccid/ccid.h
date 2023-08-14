@@ -69,7 +69,7 @@ LONG CCID_LIB(Stop)(void);
 LONG CCID_LIB(GetDescriptor)(BYTE bType, BYTE bIndex, BYTE abDescriptor[], DWORD *pdwDescriptorLength);
 LONG CCID_LIB(GetSlotCount)(BYTE *bSlotCount);
 
-BOOL CCID_LIB(IsValid)(void);
+BOOL CCID_LIB(IsValidDriver)(void);
 
 void CCID_LIB(PacketInit)(CCID_PACKET_ST *packet);
 
