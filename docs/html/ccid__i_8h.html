@@ -54,7 +54,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;project.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="pcsc-serial_8h_source.html">../pcsc-serial.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ccid__errors_8h_source.html">ccid_errors.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ccid_8h_source.html">ccid.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ccid__hal_8h_source.html">ccid_hal.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scard_8h_source.html">../scard/scard.h</a>&quot;</code><br />
 </div>
@@ -62,10 +62,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a830a17376471b87f8ef1d27d4500763f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccid__i_8h.html#a830a17376471b87f8ef1d27d4500763f">ccid_clear_error</a> (void)</td></tr>
-<tr class="separator:a830a17376471b87f8ef1d27d4500763f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff94f059c651dda459ed3eeeb5a02b7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccid__i_8h.html#aff94f059c651dda459ed3eeeb5a02b7a">ccid_raise_error</a> (const char *msg)</td></tr>
 <tr class="separator:aff94f059c651dda459ed3eeeb5a02b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9636c90bec1fde137647982afaca9fe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccid__i_8h.html#a9636c90bec1fde137647982afaca9fe9">ccid_reset_receiver</a> (void)</td></tr>
+<tr class="separator:a9636c90bec1fde137647982afaca9fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232957760f9cdf13d0db98860885560d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccid__i_8h.html#a232957760f9cdf13d0db98860885560d">htoul</a> (BYTE abBuffer[], DWORD dwValue)</td></tr>
 <tr class="separator:a232957760f9cdf13d0db98860885560d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7a73fcfb9506c57013934ee39ef0d40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccid__i_8h.html#aa7a73fcfb9506c57013934ee39ef0d40">htous</a> (BYTE abBuffer[], WORD wValue)</td></tr>
@@ -83,26 +83,6 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="ccid__i_8h_source.html">ccid_i.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a830a17376471b87f8ef1d27d4500763f" name="a830a17376471b87f8ef1d27d4500763f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a830a17376471b87f8ef1d27d4500763f">&#9670;&#160;</a></span>ccid_clear_error()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ccid_clear_error </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="ccid__helpers_8c_source.html#l00061">61</a> of file <a class="el" href="ccid__helpers_8c_source.html">ccid_helpers.c</a>.</p>
-
-</div>
-</div>
 <a id="aff94f059c651dda459ed3eeeb5a02b7a" name="aff94f059c651dda459ed3eeeb5a02b7a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff94f059c651dda459ed3eeeb5a02b7a">&#9670;&#160;</a></span>ccid_raise_error()</h2>
 
@@ -119,7 +99,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ccid__helpers_8c_source.html#l00070">70</a> of file <a class="el" href="ccid__helpers_8c_source.html">ccid_helpers.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ccid__helpers_8c_source.html#l00061">61</a> of file <a class="el" href="ccid__helpers_8c_source.html">ccid_helpers.c</a>.</p>
+
+</div>
+</div>
+<a id="a9636c90bec1fde137647982afaca9fe9" name="a9636c90bec1fde137647982afaca9fe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9636c90bec1fde137647982afaca9fe9">&#9670;&#160;</a></span>ccid_reset_receiver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ccid_reset_receiver </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ccid__serial__receiver_8c_source.html#l00082">82</a> of file <a class="el" href="ccid__serial__receiver_8c_source.html">ccid_serial_receiver.c</a>.</p>
 
 </div>
 </div>

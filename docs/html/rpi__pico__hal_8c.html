@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>springcard-ccid-serial: hal/linux/linux_hal.c File Reference</title>
+<title>springcard-ccid-serial: hal/rpi_pico/rpi_pico_hal.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,70 +40,46 @@ $(function() {
 <div id="main-nav"></div>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_52c912f73dac9c4c0e442232e1b2bd80.html">hal</a></li><li class="navelem"><a class="el" href="dir_63f4afe1445b22a19c5fd4bbe26adb5e.html">linux</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_52c912f73dac9c4c0e442232e1b2bd80.html">hal</a></li><li class="navelem"><a class="el" href="dir_e40cf12efb830060c65c966212c904f0.html">rpi_pico</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">linux_hal.c File Reference</div></div>
+  <div class="headertitle"><div class="title">rpi_pico_hal.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Hardware abstraction layer for the CCID serial driver, Linux implementation.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;project.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="pcsc-serial_8h_source.html">../../pcsc-serial.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ccid__hal_8h_source.html">../../ccid/ccid_hal.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scard__errors_8h_source.html">../../scard/scard_errors.h</a>&quot;</code><br />
-<code>#include &lt;sys/types.h&gt;</code><br />
-<code>#include &lt;sys/stat.h&gt;</code><br />
-<code>#include &lt;fcntl.h&gt;</code><br />
-<code>#include &lt;termios.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;pthread.h&gt;</code><br />
-<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="scard_8h_source.html">../../scard/scard.h</a>&quot;</code><br />
 </div>
-<p><a href="linux__hal_8c_source.html">Go to the source code of this file.</a></p>
+<p><a href="rpi__pico__hal_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aadd3d281cad6df7a7d42b42ab5904aa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#aadd3d281cad6df7a7d42b42ab5904aa3">CCID_SerialInit</a> (const char *szCommName)</td></tr>
-<tr class="memdesc:aadd3d281cad6df7a7d42b42ab5904aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare the serial library, specifying the serial comm port.  <br /></td></tr>
-<tr class="separator:aadd3d281cad6df7a7d42b42ab5904aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a719e3a04c05afd1e13f4af9f6fe496"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#a5a719e3a04c05afd1e13f4af9f6fe496">CCID_SerialOpen</a> (void)</td></tr>
-<tr class="memdesc:a5a719e3a04c05afd1e13f4af9f6fe496"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the serial comm port and activate the RX interrupt.  <br /></td></tr>
-<tr class="separator:a5a719e3a04c05afd1e13f4af9f6fe496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f375d61d16dba9a5d2ea9dd54a1481"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#af6f375d61d16dba9a5d2ea9dd54a1481">CCID_SerialClose</a> (void)</td></tr>
-<tr class="memdesc:af6f375d61d16dba9a5d2ea9dd54a1481"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the serial comm port.  <br /></td></tr>
-<tr class="separator:af6f375d61d16dba9a5d2ea9dd54a1481"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39d1054a3595028d7ea789c5af6bf7df"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#a39d1054a3595028d7ea789c5af6bf7df">CCID_SerialIsOpen</a> (void)</td></tr>
+<tr class="memitem:af4484faf938910b606c6c090d47a7b55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#af4484faf938910b606c6c090d47a7b55">ccid_is_waiting_hook</a> (void)</td></tr>
+<tr class="separator:af4484faf938910b606c6c090d47a7b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d1054a3595028d7ea789c5af6bf7df"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#a39d1054a3595028d7ea789c5af6bf7df">CCID_SerialIsOpen</a> (void)</td></tr>
 <tr class="memdesc:a39d1054a3595028d7ea789c5af6bf7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns TRUE if the serial comm port is open, FALSE otherwise.  <br /></td></tr>
 <tr class="separator:a39d1054a3595028d7ea789c5af6bf7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad492aafee2fa2dcad652911222c0e9b2"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#ad492aafee2fa2dcad652911222c0e9b2">CCID_SerialSendByte</a> (BYTE bValue)</td></tr>
+<tr class="memitem:ad492aafee2fa2dcad652911222c0e9b2"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#ad492aafee2fa2dcad652911222c0e9b2">CCID_SerialSendByte</a> (BYTE bValue)</td></tr>
 <tr class="memdesc:ad492aafee2fa2dcad652911222c0e9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send one byte to the device through the UART.  <br /></td></tr>
 <tr class="separator:ad492aafee2fa2dcad652911222c0e9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada9df9b0616ff2a6bb4fe015e3e6dde7"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#ada9df9b0616ff2a6bb4fe015e3e6dde7">CCID_SerialSendBytes</a> (const BYTE *abValue, DWORD dwLength)</td></tr>
+<tr class="memitem:ada9df9b0616ff2a6bb4fe015e3e6dde7"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#ada9df9b0616ff2a6bb4fe015e3e6dde7">CCID_SerialSendBytes</a> (const BYTE *abValue, DWORD dwLength)</td></tr>
 <tr class="memdesc:ada9df9b0616ff2a6bb4fe015e3e6dde7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a buffer to the device through the UART.  <br /></td></tr>
 <tr class="separator:ada9df9b0616ff2a6bb4fe015e3e6dde7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bb11813a677a96c992f7a8a303bec81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#a3bb11813a677a96c992f7a8a303bec81">CCID_WakeupFromISR</a> (void)</td></tr>
+<tr class="memitem:a3bb11813a677a96c992f7a8a303bec81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#a3bb11813a677a96c992f7a8a303bec81">CCID_WakeupFromISR</a> (void)</td></tr>
 <tr class="memdesc:a3bb11813a677a96c992f7a8a303bec81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify the task/thread waiting over CCID_WaitWakeup that a message is available.  <br /></td></tr>
 <tr class="separator:a3bb11813a677a96c992f7a8a303bec81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b6ab463199fc724643cacdf15a14fe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#a3b6ab463199fc724643cacdf15a14fe0">CCID_ClearWakeup</a> (void)</td></tr>
+<tr class="memitem:a3b6ab463199fc724643cacdf15a14fe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#a3b6ab463199fc724643cacdf15a14fe0">CCID_ClearWakeup</a> (void)</td></tr>
 <tr class="memdesc:a3b6ab463199fc724643cacdf15a14fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start waiting for a message.  <br /></td></tr>
 <tr class="separator:a3b6ab463199fc724643cacdf15a14fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abed24f254884dcc5afa6503389182e2f"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="linux__hal_8c.html#abed24f254884dcc5afa6503389182e2f">CCID_WaitWakeup</a> (DWORD timeout_ms)</td></tr>
+<tr class="memitem:abed24f254884dcc5afa6503389182e2f"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpi__pico__hal_8c.html#abed24f254884dcc5afa6503389182e2f">CCID_WaitWakeup</a> (DWORD timeout_ms)</td></tr>
 <tr class="memdesc:abed24f254884dcc5afa6503389182e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until a message is available or a timeout occurs.  <br /></td></tr>
 <tr class="separator:abed24f254884dcc5afa6503389182e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Hardware abstraction layer for the CCID serial driver, Linux implementation. </p>
-<dl class="section author"><dt>Author</dt><dd>johann.d, SpringCard </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2023-08-11 </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) SpringCard SAS, France, 2015-2023 </dd></dl>
-
-<p class="definition">Definition in file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a3b6ab463199fc724643cacdf15a14fe0" name="a3b6ab463199fc724643cacdf15a14fe0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b6ab463199fc724643cacdf15a14fe0">&#9670;&#160;</a></span>CCID_ClearWakeup()</h2>
 
@@ -123,18 +99,18 @@ Functions</h2></td></tr>
 <p>Start waiting for a message. </p>
 <dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00231">231</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rpi__pico__hal_8c_source.html#l00112">112</a> of file <a class="el" href="rpi__pico__hal_8c_source.html">rpi_pico_hal.c</a>.</p>
 
 </div>
 </div>
-<a id="af6f375d61d16dba9a5d2ea9dd54a1481" name="af6f375d61d16dba9a5d2ea9dd54a1481"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6f375d61d16dba9a5d2ea9dd54a1481">&#9670;&#160;</a></span>CCID_SerialClose()</h2>
+<a id="af4484faf938910b606c6c090d47a7b55" name="af4484faf938910b606c6c090d47a7b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4484faf938910b606c6c090d47a7b55">&#9670;&#160;</a></span>ccid_is_waiting_hook()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CCID_SerialClose </td>
+          <td class="memname">void ccid_is_waiting_hook </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -142,34 +118,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Close the serial comm port. </p>
-<dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00145">145</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
-
-</div>
-</div>
-<a id="aadd3d281cad6df7a7d42b42ab5904aa3" name="aadd3d281cad6df7a7d42b42ab5904aa3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadd3d281cad6df7a7d42b42ab5904aa3">&#9670;&#160;</a></span>CCID_SerialInit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CCID_SerialInit </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>szCommName</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prepare the serial library, specifying the serial comm port. </p>
-<dl class="section note"><dt>Note</dt><dd>This function may have a different prototype, depending on the OS/target requirements </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00087">87</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
 
 </div>
 </div>
@@ -192,30 +140,7 @@ Functions</h2></td></tr>
 <p>Returns TRUE if the serial comm port is open, FALSE otherwise. </p>
 <dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00165">165</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
-
-</div>
-</div>
-<a id="a5a719e3a04c05afd1e13f4af9f6fe496" name="a5a719e3a04c05afd1e13f4af9f6fe496"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a719e3a04c05afd1e13f4af9f6fe496">&#9670;&#160;</a></span>CCID_SerialOpen()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOL CCID_SerialOpen </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Open the serial comm port and activate the RX interrupt. </p>
-<dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00096">96</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rpi__pico__hal_8c_source.html#l00065">65</a> of file <a class="el" href="rpi__pico__hal_8c_source.html">rpi_pico_hal.c</a>.</p>
 
 </div>
 </div>
@@ -238,7 +163,7 @@ Functions</h2></td></tr>
 <p>Send one byte to the device through the UART. </p>
 <dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target. It is acceptable to block the caller. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00174">174</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rpi__pico__hal_8c_source.html#l00074">74</a> of file <a class="el" href="rpi__pico__hal_8c_source.html">rpi_pico_hal.c</a>.</p>
 
 </div>
 </div>
@@ -271,7 +196,7 @@ Functions</h2></td></tr>
 <p>Send a buffer to the device through the UART. </p>
 <dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target. It is acceptable to block the caller. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00192">192</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rpi__pico__hal_8c_source.html#l00084">84</a> of file <a class="el" href="rpi__pico__hal_8c_source.html">rpi_pico_hal.c</a>.</p>
 
 </div>
 </div>
@@ -292,9 +217,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Wait until a message is available or a timeout occurs. </p>
-<dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00242">242</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rpi__pico__hal_8c_source.html#l00121">121</a> of file <a class="el" href="rpi__pico__hal_8c_source.html">rpi_pico_hal.c</a>.</p>
 
 </div>
 </div>
@@ -317,7 +242,7 @@ Functions</h2></td></tr>
 <p>Notify the task/thread waiting over CCID_WaitWakeup that a message is available. </p>
 <dl class="section note"><dt>Note</dt><dd>This function must be implemented specifically for the OS/target </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="linux__hal_8c_source.html#l00219">219</a> of file <a class="el" href="linux__hal_8c_source.html">linux_hal.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rpi__pico__hal_8c_source.html#l00103">103</a> of file <a class="el" href="rpi__pico__hal_8c_source.html">rpi_pico_hal.c</a>.</p>
 
 </div>
 </div>

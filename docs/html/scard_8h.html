@@ -74,8 +74,12 @@ Functions</h2></td></tr>
 <tr class="separator:ac704e4d1219ada003152a8e1d6de8ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af48fc77019c21caa6202bf24d2f7bb32"><td class="memItemLeft" align="right" valign="top">void <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scard_8h.html#af48fc77019c21caa6202bf24d2f7bb32">Init</a> (void)</td></tr>
 <tr class="separator:af48fc77019c21caa6202bf24d2f7bb32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f46d8f1ace42cb6811f2b1fc8fbeb18"><td class="memItemLeft" align="right" valign="top">LONG <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scard_8h.html#a7f46d8f1ace42cb6811f2b1fc8fbeb18">IsValid</a> (void)</td></tr>
-<tr class="separator:a7f46d8f1ace42cb6811f2b1fc8fbeb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d4498e8e46dc7c9376db51b1f6abfab"><td class="memItemLeft" align="right" valign="top">void <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scard_8h.html#a7d4498e8e46dc7c9376db51b1f6abfab">Cancel</a> (void)</td></tr>
+<tr class="separator:a7d4498e8e46dc7c9376db51b1f6abfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1be67bcfdfa126e0e2ff557268324888"><td class="memItemLeft" align="right" valign="top">BOOL <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scard_8h.html#a1be67bcfdfa126e0e2ff557268324888">IsValidContext</a> (void)</td></tr>
+<tr class="separator:a1be67bcfdfa126e0e2ff557268324888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75d4545c4faff8d71e4aa650f990efa"><td class="memItemLeft" align="right" valign="top">BOOL <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scard_8h.html#ab75d4545c4faff8d71e4aa650f990efa">IsCancelledHook</a> (void)</td></tr>
+<tr class="separator:ab75d4545c4faff8d71e4aa650f990efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ca3e21f88a2c61016e1a27659d271f2"><td class="memItemLeft" align="right" valign="top">BOOL <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scard_8h.html#a0ca3e21f88a2c61016e1a27659d271f2">IsFatalError</a> (LONG rc)</td></tr>
 <tr class="separator:a0ca3e21f88a2c61016e1a27659d271f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -87,6 +91,24 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="scard_8h_source.html">scard.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a7d4498e8e46dc7c9376db51b1f6abfab" name="a7d4498e8e46dc7c9376db51b1f6abfab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d4498e8e46dc7c9376db51b1f6abfab">&#9670;&#160;</a></span>Cancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>() Cancel </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a28d308085f8203b5b1fc88897adad930" name="a28d308085f8203b5b1fc88897adad930"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a28d308085f8203b5b1fc88897adad930">&#9670;&#160;</a></span>Connect()</h2>
 
@@ -249,6 +271,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab75d4545c4faff8d71e4aa650f990efa" name="ab75d4545c4faff8d71e4aa650f990efa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab75d4545c4faff8d71e4aa650f990efa">&#9670;&#160;</a></span>IsCancelledHook()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>() IsCancelledHook </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0ca3e21f88a2c61016e1a27659d271f2" name="a0ca3e21f88a2c61016e1a27659d271f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ca3e21f88a2c61016e1a27659d271f2">&#9670;&#160;</a></span>IsFatalError()</h2>
 
@@ -267,14 +307,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7f46d8f1ace42cb6811f2b1fc8fbeb18" name="a7f46d8f1ace42cb6811f2b1fc8fbeb18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f46d8f1ace42cb6811f2b1fc8fbeb18">&#9670;&#160;</a></span>IsValid()</h2>
+<a id="a1be67bcfdfa126e0e2ff557268324888" name="a1be67bcfdfa126e0e2ff557268324888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1be67bcfdfa126e0e2ff557268324888">&#9670;&#160;</a></span>IsValidContext()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">LONG <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>() IsValid </td>
+          <td class="memname">BOOL <a class="el" href="pcsc-serial_8h.html#aa9288163f41831f72236be7235267119">SCARD_LIB</a>() IsValidContext </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
