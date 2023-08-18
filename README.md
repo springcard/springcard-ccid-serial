@@ -2,6 +2,8 @@
 
 PC/SC-Like library and CCID "driver" for PC/SC couplers over a Serial link
 
+***This project is associated with SpringCard document PNA23174 "Application Note: Using the M519 in PC/SC Coupler mode over a Serial interface".***
+
 ## Introduction
 
 PC/SC is the de-facto standard to make an application running on a high-end computer (say, a PC) interact with a smart card (SC).

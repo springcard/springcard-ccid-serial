@@ -64,7 +64,7 @@
 void CCID_LIB(Init)(void);
 
 LONG CCID_LIB(Ping)(void);
-LONG CCID_LIB(Start)(BOOL fUseInterruptEndpoint);
+LONG CCID_LIB(Start)(BOOL fUseNotifications);
 LONG CCID_LIB(Stop)(void);
 LONG CCID_LIB(GetDescriptor)(BYTE bType, BYTE bIndex, BYTE abDescriptor[], DWORD *pdwDescriptorLength);
 LONG CCID_LIB(GetSlotCount)(BYTE *bSlotCount);
