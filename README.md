@@ -2,7 +2,7 @@
 
 PC/SC-Like library and CCID "driver" for PC/SC couplers over a Serial link
 
-***This project is associated with SpringCard document PNA23174 "Application Note: Using the M519 in PC/SC Coupler mode over a Serial interface".***
+***This project is associated with SpringCard document PNA23174 "Application Note: Using the M519 in PC/SC Coupler mode over a Serial interface". Latest version could be download at [https://www.springcard.com/fr/download/find/file/pna23174].***
 
 ## Introduction
 
